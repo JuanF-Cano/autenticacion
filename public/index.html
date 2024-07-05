@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de API DMDB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .endpoint {
+            margin-top: 20px;
+        }
+        .method {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .url {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentación de API DMDB</h1>
+    <p>La API DMDB es una plataforma que permite gestionar y consultar información sobre películas, series de TV, personas y contenido en tendencia. Está desarrollada con Node.js y Express y proporciona diversos endpoints para interactuar con estos datos.</p>
+    
+    <h2>Base URL</h2>
+    <pre>http://localhost:3000/api</pre>
+
+    <h2>Endpoints Principales</h2>
+
+    <div class="endpoint">
+        <h3>Movies</h3>
+        <p><span class="method">GET</span> <span class="url">{{baseUrl}}/movie</span></p>
+        <p><strong>Descripción:</strong> Obtener todas las películas.</p>
+        <p><strong>Respuesta de Ejemplo:</strong></p>
+        <pre><code>[
+    {
+        "id": 1,
+        "title": "Movie Title",
+        "release_date": "2024-01-01"
+    }
+]</code></pre>
+
+        <p><span class="method">GET</span> <span class="url">{{baseUrl}}/movie/{{movieId}}</span></p>
+        <p><strong>Descripción:</strong> Obtener detalles de una película específica.</p>
+        <p><strong>Respuesta de Ejemplo:</strong></p>
+        <pre><code>{
+    "id": 1,
+    "title": "Movie Title",
+    "release_date": "2024-01-01"
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>TV Shows</h3>
+        <p><span class="method">GET</span> <span class="url">{{baseUrl}}/tv</span></p>
+        <p><strong>Descripción:</strong> Obtener todas las series de TV.</p>
+        <p><strong>Respuesta de Ejemplo:</strong></p>
+        <pre><code>[
+    {
+        "id": 1,
+        "name": "TV Show Title",
+        "first_air_date": "2024-01-01"
+    }
+]</code></pre>
+
+        <p><span class="method">GET</span> <span class="url">{{baseUrl}}/tv/{{tvId}}</span></p>
+        <p><strong>Descripción:</strong> Obtener detalles de una serie de TV específica.</p>
+        <p><strong>Respuesta de Ejemplo:</strong></p>
+        <pre><code>{
+    "id": 1,
+    "name": "TV Show Title",
+    "first_air_date": "2024-01-01"
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>People</h3>
+        <p><span class="method">GET</span> <span class="url">{{baseUrl}}/people</span></p>
+        <p><strong>Descripción:</strong> Obtener todas las personas.</p>
+        <p><strong>Respuesta de Ejemplo:</strong></p>
+        <pre><code>[
+    {
+        "id": 1,
+        "name": "Person Name",
+        "known_for": "Acting"
+    }
+]</code></pre>
+
+        <p><span class="method">GET</span> <span class="url">{{baseUrl}}/people/{{peopleId}}</span></p>
+        <p><strong>Descripción:</strong> Obtener detalles de una persona específica.</p>
+        <p><strong>Respuesta de Ejemplo:</strong></p>
+        <pre><code>{
+    "id": 1,
+    "name": "Person Name",
+    "known_for": "Acting"
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>Trending</h3>
+        <p><span class="method">GET</span> <span class="url">{{baseUrl}}/trending</span></p>
+        <p><strong>Descripción:</strong> Obtener contenido en tendencia.</p>
+        <p><strong>Respuesta de Ejemplo:</strong></p>
+        <pre><code>[
+    {
+        "id": 1,
+        "title": "Trending Title",
+        "type": "movie"
+    }
+]</code></pre>
+    </div>
+
+    <h2>Configuración de Postman</h2>
+    <p>Para configurar Postman para usar esta API:</p>
+    <ol>
+        <li>Crea una nueva colección en Postman llamada <strong>API DMDB</strong>.</li>
+        <li>Crea un nuevo entorno en Postman llamado <strong>Local</strong> y añade las siguientes variables:
+            <ul>
+                <li><code>baseUrl</code>: <code>http://localhost:3000/api</code></li>
+                <li><code>movieId</code>, <code>tvId</code>, <code>peopleId</code>: Deja estos valores vacíos inicialmente y actualízalos después de hacer las solicitudes.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Instrucciones para las Pruebas</h2>
+    <ol>
+        <li>Selecciona el método adecuado (GET, POST, etc.) en Postman.</li>
+        <li>Introduce la URL correspondiente usando las variables definidas (<code>{{baseUrl}}/movie</code>, etc.).</li>
+        <li>Añade cualquier parámetro necesario en las secciones correspondientes (Params, Headers, Body).</li>
+        <li>Haz clic en "Send" y verifica la respuesta.</li>
+    </ol>
+
+    <h2>Ejemplo de Solicitud en Postman</h2>
+    <p><span class="method">GET</span> <span class="url">{{baseUrl}}/movie</span></p>
+    <p><strong>Respuesta esperada:</strong></p>
+    <pre><code>[
+    {
+        "id": 1,
+        "title": "Movie Title",
+        "release_date": "2024-01-01"
+    }
+]</code></pre>
+
+    <h2>Conclusión</h2>
+    <p>Esta API proporciona varios endpoints para gestionar y consultar información sobre películas, series de TV, personas y contenido en tendencia. Utiliza las variables y métodos adecuados en Postman para realizar pruebas exhaustivas y asegurar el correcto funcionamiento de la API.</p>
+</body>
+</html>

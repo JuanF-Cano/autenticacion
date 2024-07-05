@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "7dcd6235-4287-4894-a2cb-5738f8ced5c2",
+		"name": "API TMDB",
+		"description": "StartFragmentLa API TMDB es una plataforma que permite gestionar y consultar información sobre películas, series de TV, personas y contenido en tendencia. Está desarrollada con Node.js y Express y proporciona diversos endpoints para interactuar con estos datos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36754738"
+	},
+	"item": [
+		{
+			"name": "GET Listar movie/tv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/:type?page=1&language=en-US&query=inside&genres=Comedy",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						":type"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"description": "Paginado de la respuesta"
+						},
+						{
+							"key": "region",
+							"value": "",
+							"description": "Codigo de región para filtrar",
+							"disabled": true
+						},
+						{
+							"key": "language",
+							"value": "en-US",
+							"description": "Codigo de idioma"
+						},
+						{
+							"key": "query",
+							"value": "inside",
+							"description": "Filtro por titulo "
+						},
+						{
+							"key": "genres",
+							"value": "Comedy",
+							"description": "Filtro pot genero"
+						}
+					],
+					"variable": [
+						{
+							"key": "type",
+							"value": "tv",
+							"description": "Endpoint de tipo tv/movies"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Buscar Personas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/people?language=en-US&include_adult=true&page=1&query=Lola",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"people"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en-US",
+							"description": "Codigo de idioma"
+						},
+						{
+							"key": "include_adult",
+							"value": "true",
+							"description": "Incluir contenido para adultos"
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"description": "Numero de paginación"
+						},
+						{
+							"key": "query",
+							"value": "Lola",
+							"description": "Busqueda por nombre"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Detalles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/:type/:id",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						":type",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "type",
+							"value": "movies",
+							"description": "Endpoint de tipo tv/movies"
+						},
+						{
+							"key": "id",
+							"value": "603",
+							"description": "id de la movie o tv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Detalles persona",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/people/:id",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"people",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "333",
+							"description": "identificador de la persona"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Trending",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/trending/:type?time_window=day",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"trending",
+						":type"
+					],
+					"query": [
+						{
+							"key": "time_window",
+							"value": "day",
+							"description": "Periodo de tiempo trending"
+						}
+					],
+					"variable": [
+						{
+							"key": "type",
+							"value": "movie",
+							"description": "Tipo de contenido trending. Values: movie, tv people"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
